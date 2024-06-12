@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD SERVICES : yashra.in</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], textarea {
+            width: 96%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #555;
+        }
+        button{
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>ADD SERVICES</h1>
+    <form>
+        <label for="service_name">Service Name</label>
+        <input type="text" name="service_name" id="service_name" required>
+        <br>
+        <label for="service_description">Service Description</label>
+        <textarea name="service_description" id="service_description" cols="30" rows="10" required></textarea>
+        <br>
+        <button onclick="handelSubmit()">Add Service</button>
+    </form>
+
+    <a href="/">Go Back</a>
+    <script>
+        function handelSubmit() {
+            const response = fetch('/add-service', {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    service_name: document.getElementById('service_name').value,
+                    service_description: document.getElementById('service_description').value
+                })
+            });
+
+            alert('Service Added Successfully');
+        }
+    </script>
+</body>
+</html>
